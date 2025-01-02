@@ -7,8 +7,12 @@ dotenv.config({
 })
 connectDB()
 .then(()=>{
-    app.listen(process.env.PORT || 800,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log(`Server is runnig at port : ${process.env.PORT}`)
+    })
+    app.on("error",(error)=>{
+        console.log(error);
+        throw error;
     })
 })
 .catch((error) =>{
@@ -30,7 +34,7 @@ const app=express()
         })
 
         app.listen(process.env.PORT, () =>{
-            console.log(`Server is running on port ${process.env.PORT}`;
+            console.log(`Server is running on port ${process.env.PORT}`);
         })
     } catch (error) {
         console.log(error);
